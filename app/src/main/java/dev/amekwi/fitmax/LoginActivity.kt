@@ -7,45 +7,31 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import dev.amekwi.fitmax.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-
-    lateinit var itEmail: TextInputEditText
-    lateinit var itpassword: TextInputEditText
-    lateinit var tilEmail: TextInputLayout
-    lateinit var tilpassword: TextInputLayout
-    lateinit var tvup: TextView
-    lateinit var btnlogin: Button
-
+    lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding=ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tvup= findViewById(R.id.tvup)
-        tilEmail=findViewById(R.id.tilEmail)
-        itpassword=findViewById(R.id.itpassword)
-        itEmail=findViewById(R.id.itEmail)
-        tilpassword=findViewById(R.id.tilpassword)
-        btnlogin=findViewById(R.id.btnlogin)
-
-        tvup.setOnClickListener {
+        binding.tvup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-
         }
-            btnlogin.setOnClickListener {
+            binding.btnlogin.setOnClickListener {
                 validateLogin()
             }
     }
-
     fun validateLogin() {
-        var email=itEmail.text.toString()
-        var password=itpassword.text.toString()
+        var email=binding.itEmail.text.toString()
+        var password=binding.itpassword.text.toString()
         if(email.isBlank()){
-            itEmail.error="Email is invalid"
+            binding.itEmail.error="Email is invalid"
         }
         if (password.isBlank()){
-            itpassword.error="Password is required"
+            binding.itpassword.error="Password is required"
         }
     }
 }
